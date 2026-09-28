@@ -4,14 +4,15 @@ import { ui } from '../../i18n/ui';
 
 export function getStaticPaths() {
   return [
-    { params: { lang: 'es' } },
-    { params: { lang: 'en' } },
-    { params: { lang: 'pt' } },
-    { params: { lang: 'it' } },
+    { params: { Lang: 'es' } },
+    { params: { Lang: 'en' } },
+    { params: { Lang: 'pt' } },
+    { params: { Lang: 'it' } },
   ];
 }
 
-const { lang } = Astro.params as { lang: 'es' | 'en' | 'pt' | 'it' };
+const { Lang } = Astro.params;
+const lang = (Lang as string).toLowerCase() as 'es' | 'en' | 'pt' | 'it';
 const t = ui[lang];
 
 const cases = [
