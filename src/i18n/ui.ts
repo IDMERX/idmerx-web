@@ -1,111 +1,105 @@
-export const languages = {
-  es: 'Español',
-  en: 'English',
-  pt: 'Português',
-  it: 'Italiano',
-};
+---
+import Layout from '../../layouts/Layout.astro';
+import { ui } from '../../i18n/ui';
 
-export const defaultLang = 'es';
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'en' } },
+    { params: { lang: 'pt' } },
+    { params: { lang: 'it' } },
+  ];
+}
 
-export const ui = {
-  es: {
-    'nav.home': 'Inicio',
-    'nav.solutions': 'Soluciones',
-    'nav.contact': 'Contacto',
-    'hero.badge': 'NFC Criptográfico & Identidad Digital',
-    'hero.title': 'Autenticidad e Identidad Digital para tus Productos',
-    'hero.subtitle': 'Protege tu marca contra falsificaciones y conecta directamente con tus clientes mediante chips NFC criptográficos de máxima seguridad.',
-    'hero.cta': 'Solicitar Demostración',
-    'hero.cta_secondary': 'Ver Soluciones',
-    'feature1.title': 'NFC Criptográfico Inviolable',
-    'feature1.desc': 'Chips con autenticación dinámica que garantizan la autenticidad física y digital de cada pieza.',
-    'feature2.title': 'Trazabilidad y Pasaporte Digital',
-    'feature2.desc': 'Registra la historia, origen y propiedad de cada producto de forma transparente e inmutable.',
-    'feature3.title': 'Engagement Directo',
-    'feature3.desc': 'Abre un canal directo de comunicación post-venta interactivo con el comprador final al acercar su smartphone.',
-    'sectors.title': 'Sectores Principales',
-    'sectors.subtitle': 'Diseñado para marcas exigentes que protegen el valor de sus productos.',
-    'sector1.title': 'Moda & Ropa Deportiva',
-    'sector1.desc': 'Verificación de autenticidad y pasaporte digital para prendas de colección y ediciones limitadas.',
-    'sector2.title': 'Vinos & Espirituosos',
-    'sector2.desc': 'Garantía anti-falsificación y sello de origen en botellas de alta gama.',
-    'sector3.title': 'Arte & Lujo',
-    'sector3.desc': 'Certificados de autenticidad digitales vinculados físicamente a la obra o producto.',
-    'footer.rights': 'Todos los derechos reservados.',
+const { lang } = Astro.params as { lang: 'es' | 'en' | 'pt' | 'it' };
+const t = ui[lang];
+
+const cases = [
+  {
+    key: 'jersey',
+    image: '/images/jersey.png',
+    fallbackBg: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)',
+    icon: '⚽'
   },
-  en: {
-    'nav.home': 'Home',
-    'nav.solutions': 'Solutions',
-    'nav.contact': 'Contact',
-    'hero.badge': 'Cryptographic NFC & Digital Identity',
-    'hero.title': 'Authenticity and Digital Identity for Your Products',
-    'hero.subtitle': 'Protect your brand against counterfeiting and connect directly with your customers using high-security cryptographic NFC chips.',
-    'hero.cta': 'Request Demo',
-    'hero.cta_secondary': 'Explore Solutions',
-    'feature1.title': 'Tamper-proof Cryptographic NFC',
-    'feature1.desc': 'Chips with dynamic authentication guaranteeing physical and digital authenticity for every single piece.',
-    'feature2.title': 'Traceability & Digital Passport',
-    'feature2.desc': 'Track the history, origin, and ownership of each product transparently and immutably.',
-    'feature3.title': 'Direct Customer Engagement',
-    'feature3.desc': 'Open an interactive direct post-sale communication channel with consumers with just a smartphone tap.',
-    'sectors.title': 'Key Industries',
-    'sectors.subtitle': 'Built for premium brands safeguarding product value.',
-    'sector1.title': 'Fashion & Sportswear',
-    'sector1.desc': 'Authenticity verification and digital passport for limited-edition apparel.',
-    'sector2.title': 'Wines & Spirits',
-    'sector2.desc': 'Anti-counterfeit guarantee and origin seal for high-end bottles.',
-    'sector3.title': 'Art & Luxury Goods',
-    'sector3.desc': 'Digital certificates of authenticity physically tied to high-value items.',
-    'footer.rights': 'All rights reserved.',
+  {
+    key: 'valve',
+    image: '/images/valve.png',
+    fallbackBg: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
+    icon: '⚙️'
   },
-  pt: {
-    'nav.home': 'Início',
-    'nav.solutions': 'Soluções',
-    'nav.contact': 'Contacto',
-    'hero.badge': 'NFC Criptográfico & Identidade Digital',
-    'hero.title': 'Autenticidade e Identidade Digital para os seus Produtos',
-    'hero.subtitle': 'Proteja a sua marca contra falsificações e conecte-se diretamente com os seus clientes através de chips NFC criptográficos de alta segurança.',
-    'hero.cta': 'Solicitar Demonstração',
-    'hero.cta_secondary': 'Ver Soluções',
-    'feature1.title': 'NFC Criptográfico Inviolável',
-    'feature1.desc': 'Chips com autenticação dinâmica que garantem a autenticidade física e digital de cada peça.',
-    'feature2.title': 'Rastreabilidade e Passaporte Digital',
-    'feature2.desc': 'Registe a história, origem e propriedade de cada produto de forma transparente e imutável.',
-    'feature3.title': 'Envolvimento Directo',
-    'feature3.desc': 'Abra um canal directo de comunicação pós-venda com o consumidor apenas aproximando o smartphone.',
-    'sectors.title': 'Principais Sectores',
-    'sectors.subtitle': 'Concebido para marcas exclusivas que protegem o valor dos seus produtos.',
-    'sector1.title': 'Moda & Desporto',
-    'sector1.desc': 'Verificação de autenticidade e passaporte digital para colecções exclusivas.',
-    'sector2.title': 'Vinhos & Espirituosos',
-    'sector2.desc': 'Garantia anti-falsificação e selo de origem em garrafas de alta gama.',
-    'sector3.title': 'Arte & Luxo',
-    'sector3.desc': 'Certificados de autenticidade digitais associados fisicamente à peça.',
-    'footer.rights': 'Todos os direitos reservados.',
+  {
+    key: 'spirits',
+    image: '/images/spirits.png',
+    fallbackBg: 'linear-gradient(135deg, #2A080C 0%, #4A121A 100%)',
+    icon: '🍷'
   },
-  it: {
-    'nav.home': 'Home',
-    'nav.solutions': 'Soluzioni',
-    'nav.contact': 'Contatti',
-    'hero.badge': 'NFC Crittografico & Identità Digitale',
-    'hero.title': 'Autenticità e Identità Digitale per i tuoi Prodotti',
-    'hero.subtitle': 'Proteggi il tuo brand dalla contraffazione e connettiti direttamente con i tuoi clienti utilizzando chip NFC crittografici ad alta sicurezza.',
-    'hero.cta': 'Richiedi Demo',
-    'hero.cta_secondary': 'Scopri le Soluzioni',
-    'feature1.title': 'NFC Crittografico Inviolabile',
-    'feature1.desc': 'Chip con autenticazione dinamica che garantiscono l\'autenticità fisica e digitale di ogni singolo capo o prodotto.',
-    'feature2.title': 'Tracciabilità e Passaporto Digitale',
-    'feature2.desc': 'Registra la storia, l\'origine e la proprietà di ciascun prodotto in modo trasparente e immutabile.',
-    'feature3.title': 'Engagement Diretto',
-    'feature3.desc': 'Apri un canale diretto di comunicazione post-vendita interattivo avvicinando semplicemente lo smartphone.',
-    'sectors.title': 'Settori Principali',
-    'sectors.subtitle': 'Progettato per brand d\'eccellenza che proteggono il valore dei loro prodotti.',
-    'sector1.title': 'Moda & Sportswear',
-    'sector1.desc': 'Verifica di autenticità e passaporto digitale per collezioni ed edizioni limitate.',
-    'sector2.title': 'Vini & Distillati',
-    'sector2.desc': 'Garanzia anti-contraffazione e sigillo di origine per bottiglie di pregio.',
-    'sector3.title': 'Arte & Lusso',
-    'sector3.desc': 'Certificati di autenticità digitali legati fisicamente all\'opera o prodotto.',
-    'footer.rights': 'Tutti i diritti riservati.',
-  },
-};
+  {
+    key: 'luxury',
+    image: '/images/luxury.png',
+    fallbackBg: 'linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%)',
+    icon: '💎'
+  }
+];
+---
+
+<Layout lang={lang} title={`idmerx - ${t['hero.title']}`}>
+  <!-- Hero Section -->
+  <section style="text-align: center; padding: 3rem 1rem 4rem 1rem; max-width: 900px; margin: 0 auto;">
+    <div style="display: inline-block; padding: 0.5rem 1.25rem; background: rgba(0, 168, 232, 0.1); border: 1px solid var(--color-primary); border-radius: 20px; color: var(--color-primary); font-size: 0.85rem; font-weight: 700; margin-bottom: 1.5rem;">
+      {t['hero.badge']}
+    </div>
+    <h1 style="font-size: 3rem; line-height: 1.2; color: var(--color-dark); margin-bottom: 1.5rem; font-weight: 800; letter-spacing: -0.02em;">
+      {t['hero.title']}
+    </h1>
+    <p style="font-size: 1.2rem; color: #475569; margin-bottom: 2.5rem; line-height: 1.6;">
+      {t['hero.subtitle']}
+    </p>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <a href="mailto:info@idmerx.com" class="btn-primary">{t['hero.cta']}</a>
+      <a href="#casos" class="btn-secondary">{t['hero.cta_secondary']}</a>
+    </div>
+  </section>
+
+  <!-- Product Use Cases Section -->
+  <section id="casos" style="margin-top: 2rem;">
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <h2 style="font-size: 2.2rem; color: var(--color-dark); font-weight: 800; margin-bottom: 0.5rem;">{t['sectors.title']}</h2>
+      <p style="color: #64748B; font-size: 1.1rem;">{t['sectors.subtitle']}</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+      {cases.map((c) => (
+        <div style="background: #FFFFFF; border-radius: 16px; border: 1px solid var(--color-border); overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
+          <div style={`height: 220px; background: ${c.fallbackBg}; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;`}>
+            <img 
+              src={c.image} 
+              alt={t[`sector.${c.key}.title`]} 
+              style="width: 100%; height: 100%; object-fit: cover;"
+              onerror="this.style.display='none'"
+            />
+            <div style="position: absolute; top: 1rem; left: 1rem; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); color: #FFF; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700;">
+              {c.icon} {t[`sector.${c.key}.badge`]}
+            </div>
+          </div>
+          
+          <div style="padding: 1.8rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <h3 style="font-size: 1.25rem; color: var(--color-dark); font-weight: 700; margin-bottom: 0.8rem;">
+                {t[`sector.${c.key}.title`]}
+              </h3>
+              <p style="color: #64748B; font-size: 0.95rem; line-height: 1.5;">
+                {t[`sector.${c.key}.desc`]}
+              </p>
+            </div>
+            <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #F1F5F9; text-align: right;">
+              <a href="mailto:info@idmerx.com" style="color: var(--color-primary); font-weight: 700; text-decoration: none; font-size: 0.9rem;">
+                Saber más &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>
+
