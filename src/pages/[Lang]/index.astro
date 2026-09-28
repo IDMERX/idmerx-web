@@ -1,0 +1,81 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { ui } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'en' } },
+    { params: { lang: 'pt' } },
+    { params: { lang: 'it' } },
+  ];
+}
+
+const { lang } = Astro.params as { lang: 'es' | 'en' | 'pt' | 'it' };
+const t = ui[lang];
+---
+
+<Layout lang={lang} title={`idmerx - ${t['hero.title']}`}>
+  <!-- Hero Section -->
+  <section style="text-align: center; padding: 4rem 1rem 5rem 1rem; max-width: 900px; margin: 0 auto;">
+    <div style="display: inline-block; padding: 0.5rem 1.25rem; background: rgba(0, 168, 232, 0.1); border: 1px solid var(--color-primary); border-radius: 20px; color: var(--color-primary); font-size: 0.85rem; font-weight: 700; margin-bottom: 1.5rem;">
+      {t['hero.badge']}
+    </div>
+    <h1 style="font-size: 3.2rem; line-height: 1.2; color: var(--color-dark); margin-bottom: 1.5rem; font-weight: 800; letter-spacing: -0.02em;">
+      {t['hero.title']}
+    </h1>
+    <p style="font-size: 1.25rem; color: #475569; margin-bottom: 2.5rem; line-height: 1.6;">
+      {t['hero.subtitle']}
+    </p>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <a href="mailto:info@idmerx.com" class="btn-primary">{t['hero.cta']}</a>
+      <a href="#soluciones" class="btn-secondary">{t['hero.cta_secondary']}</a>
+    </div>
+  </section>
+
+  <!-- Key Features / Soluciones -->
+  <section id="soluciones" style="margin-bottom: 6rem;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+      <div style="background: var(--color-card); padding: 2.5rem; border-radius: 16px; border: 1px solid var(--color-border); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+        <div style="width: 14px; height: 14px; background: var(--color-primary); border-radius: 50%; margin-bottom: 1.2rem;"></div>
+        <h3 style="color: var(--color-dark); font-size: 1.35rem; margin-bottom: 0.8rem; font-weight: 700;">{t['feature1.title']}</h3>
+        <p style="color: #64748B; font-size: 1rem;">{t['feature1.desc']}</p>
+      </div>
+
+      <div style="background: var(--color-card); padding: 2.5rem; border-radius: 16px; border: 1px solid var(--color-border); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+        <div style="width: 14px; height: 14px; background: var(--color-primary); border-radius: 50%; margin-bottom: 1.2rem;"></div>
+        <h3 style="color: var(--color-dark); font-size: 1.35rem; margin-bottom: 0.8rem; font-weight: 700;">{t['feature2.title']}</h3>
+        <p style="color: #64748B; font-size: 1rem;">{t['feature2.desc']}</p>
+      </div>
+
+      <div style="background: var(--color-card); padding: 2.5rem; border-radius: 16px; border: 1px solid var(--color-border); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+        <div style="width: 14px; height: 14px; background: var(--color-accent); border-radius: 50%; margin-bottom: 1.2rem;"></div>
+        <h3 style="color: var(--color-dark); font-size: 1.35rem; margin-bottom: 0.8rem; font-weight: 700;">{t['feature3.title']}</h3>
+        <p style="color: #64748B; font-size: 1rem;">{t['feature3.desc']}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sectors Section -->
+  <section style="background: #FFFFFF; padding: 4rem 2rem; border-radius: 20px; border: 1px solid var(--color-border); text-align: center;">
+    <h2 style="font-size: 2.2rem; color: var(--color-dark); margin-bottom: 0.5rem; font-weight: 800;">{t['sectors.title']}</h2>
+    <p style="color: #64748B; margin-bottom: 3rem; font-size: 1.1rem;">{t['sectors.subtitle']}</p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; text-align: left;">
+      <div style="padding: 1.5rem; background: var(--color-light); border-radius: 12px;">
+        <h4 style="color: var(--color-primary); font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 700;">{t['sector1.title']}</h4>
+        <p style="color: #475569; font-size: 0.95rem;">{t['sector1.desc']}</p>
+      </div>
+
+      <div style="padding: 1.5rem; background: var(--color-light); border-radius: 12px;">
+        <h4 style="color: var(--color-primary); font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 700;">{t['sector2.title']}</h4>
+        <p style="color: #475569; font-size: 0.95rem;">{t['sector2.desc']}</p>
+      </div>
+
+      <div style="padding: 1.5rem; background: var(--color-light); border-radius: 12px;">
+        <h4 style="color: var(--color-primary); font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 700;">{t['sector3.title']}</h4>
+        <p style="color: #475569; font-size: 0.95rem;">{t['sector3.desc']}</p>
+      </div>
+    </div>
+  </section>
+</Layout>
