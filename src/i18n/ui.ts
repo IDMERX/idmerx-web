@@ -1,105 +1,135 @@
----
-import Layout from '../../layouts/Layout.astro';
-import { ui } from '../../i18n/ui';
+export const languages = {
+  es: 'Español',
+  en: 'English',
+  pt: 'Português',
+  it: 'Italiano',
+};
 
-export function getStaticPaths() {
-  return [
-    { params: { lang: 'es' } },
-    { params: { lang: 'en' } },
-    { params: { lang: 'pt' } },
-    { params: { lang: 'it' } },
-  ];
-}
+export const defaultLang = 'es';
 
-const { lang } = Astro.params as { lang: 'es' | 'en' | 'pt' | 'it' };
-const t = ui[lang];
+export const ui = {
+  es: {
+    'nav.home': 'Inicio',
+    'nav.solutions': 'Sectores',
+    'nav.contact': 'Contacto',
+    'hero.badge': 'NFC Criptográfico & Identidad Digital',
+    'hero.title': 'Autenticidad e Identidad Digital para tus Productos',
+    'hero.subtitle': 'Protege tu marca contra falsificaciones, garantiza la trazabilidad y conecta directamente con tus clientes mediante chips NFC criptográficos de máxima seguridad.',
+    'hero.cta': 'Solicitar Demostración',
+    'hero.cta_secondary': 'Explorar Casos de Uso',
 
-const cases = [
-  {
-    key: 'jersey',
-    image: '/images/jersey.png',
-    fallbackBg: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)',
-    icon: '⚽'
+    'sectors.title': 'Soluciones por Sector',
+    'sectors.subtitle': 'Tecnología NFC adapada a las exigencias de cada industria.',
+
+    'sector.jersey.title': 'Camisetas Deportivas & Merchandising',
+    'sector.jersey.badge': 'Moda & Deporte',
+    'sector.jersey.desc': 'Chip NFC lavable e integrado en el tejido. Permite a los afines verificar la autenticidad de la prenda oficial y acceder a contenido exclusivo de su equipo.',
+
+    'sector.valve.title': 'Válvulas & Componentes Industriales',
+    'sector.valve.badge': 'Industria & Mantenimiento',
+    'sector.valve.desc': 'NFC de alta resistencia técnica. Registro inalterable de inspecciones, manuales de mantenimiento, fichas técnicas y certificados de seguridad en entorno industrial.',
+
+    'sector.spirits.title': 'Vinos & Licores de Alta Gama',
+    'sector.spirits.badge': 'Bebidas & Gourmet',
+    'sector.spirits.desc': 'Sello de origen digital y protección contra el rellenado. Garantiza la cosecha, la trazabilidad de la botella y ofrece experiencias de cata interactiva.',
+
+    'sector.luxury.title': 'Moda, Arte & Productos de Lujo',
+    'sector.luxury.badge': 'Lujo & Coleccionables',
+    'sector.luxury.desc': 'Pasaporte Digital de Producto (DPP). Certificados digitales de autenticidad y propiedad vinculados físicamente a piezas exclusivas y de edición limitada.',
+
+    'footer.rights': 'Todos los derechos reservados.',
   },
-  {
-    key: 'valve',
-    image: '/images/valve.png',
-    fallbackBg: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
-    icon: '⚙️'
+  en: {
+    'nav.home': 'Home',
+    'nav.solutions': 'Industries',
+    'nav.contact': 'Contact',
+    'hero.badge': 'Cryptographic NFC & Digital Identity',
+    'hero.title': 'Authenticity and Digital Identity for Your Products',
+    'hero.subtitle': 'Protect your brand against counterfeiting, ensure traceability, and connect directly with your customers using high-security cryptographic NFC chips.',
+    'hero.cta': 'Request Demo',
+    'hero.cta_secondary': 'Explore Use Cases',
+
+    'sectors.title': 'Industry Solutions',
+    'sectors.subtitle': 'NFC technology tailored to the needs of every sector.',
+
+    'sector.jersey.title': 'Sports Jerseys & Merchandising',
+    'sector.jersey.badge': 'Sports & Apparel',
+    'sector.jersey.desc': 'Washable NFC chip integrated directly into fabric. Enables fans to verify official gear authenticity and unlock exclusive team content.',
+
+    'sector.valve.title': 'Valves & Industrial Equipment',
+    'sector.valve.badge': 'Industry & Maintenance',
+    'sector.valve.desc': 'Heavy-duty technical NFC tags. Immutable records of safety inspections, maintenance logs, technical sheets, and compliance certificates.',
+
+    'sector.spirits.title': 'Fine Wines & Premium Spirits',
+    'sector.spirits.badge': 'Beverages & Gourmet',
+    'sector.spirits.desc': 'Digital seal of origin and anti-refill protection. Guarantees vintage authenticity, bottle traceability, and interactive tasting notes.',
+
+    'sector.luxury.title': 'Fashion, Art & Luxury Goods',
+    'sector.luxury.badge': 'Luxury & Collectibles',
+    'sector.luxury.desc': 'Digital Product Passport (DPP). Digital certificates of authenticity and ownership physically tied to exclusive and limited-edition items.',
+
+    'footer.rights': 'All rights reserved.',
   },
-  {
-    key: 'spirits',
-    image: '/images/spirits.png',
-    fallbackBg: 'linear-gradient(135deg, #2A080C 0%, #4A121A 100%)',
-    icon: '🍷'
+  pt: {
+    'nav.home': 'Início',
+    'nav.solutions': 'Sectores',
+    'nav.contact': 'Contacto',
+    'hero.badge': 'NFC Criptográfico & Identidade Digital',
+    'hero.title': 'Autenticidade e Identidade Digital para os seus Produtos',
+    'hero.subtitle': 'Proteja a sua marca contra falsificações, garanta a rastreabilidade e conecte-se aos seus clientes através de chips NFC criptográficos de alta segurança.',
+    'hero.cta': 'Solicitar Demonstração',
+    'hero.cta_secondary': 'Ver Casos de Uso',
+
+    'sectors.title': 'Soluções por Sector',
+    'sectors.subtitle': 'Tecnologia NFC adaptada às exigências de cada indústria.',
+
+    'sector.jersey.title': 'Camisolas Desportivas & Merchandising',
+    'sector.jersey.badge': 'Moda & Desporto',
+    'sector.jersey.desc': 'Chip NFC lavável integrado no tecido. Permite aos adeptos verificar a autenticidade do produto oficial e aceder a conteúdos exclusivos do clube.',
+
+    'sector.valve.title': 'Válvulas & Equipamento Industrial',
+    'sector.valve.badge': 'Indústria & Manutenção',
+    'sector.valve.desc': 'NFC técnico de alta resistência. Registo inalterável de inspecções, manuais de manutenção, fichas técnicas e certificados de segurança.',
+
+    'sector.spirits.title': 'Vinhos & Espirituosos de Alta Gama',
+    'sector.spirits.badge': 'Bebidas & Gourmet',
+    'sector.spirits.desc': 'Selo de origem digital e protecção contra adulteração. Garante a colheita, rastreabilidade da garrafa e experiências de prova interactivas.',
+
+    'sector.luxury.title': 'Moda, Arte & Bens de Luxo',
+    'sector.luxury.badge': 'Luxo & Coleccionáveis',
+    'sector.luxury.desc': 'Passaporte Digital de Produto (DPP). Certificados digitais de autenticidade e propriedade associados fisicamente a peças exclusivas.',
+
+    'footer.rights': 'Todos os direitos reservados.',
   },
-  {
-    key: 'luxury',
-    image: '/images/luxury.png',
-    fallbackBg: 'linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%)',
-    icon: '💎'
-  }
-];
----
+  it: {
+    'nav.home': 'Home',
+    'nav.solutions': 'Settori',
+    'nav.contact': 'Contatti',
+    'hero.badge': 'NFC Crittografico & Identità Digitale',
+    'hero.title': 'Autenticità e Identità Digitale per i tuoi Prodotti',
+    'hero.subtitle': 'Proteggi il tuo brand dalla contraffazione, garantisci la tracciabilità e connettiti direttamente con i clienti utilizzando chip NFC crittografici ad alta sicurezza.',
+    'hero.cta': 'Richiedi Demo',
+    'hero.cta_secondary': 'Esplora i Casi d\'Uso',
 
-<Layout lang={lang} title={`idmerx - ${t['hero.title']}`}>
-  <!-- Hero Section -->
-  <section style="text-align: center; padding: 3rem 1rem 4rem 1rem; max-width: 900px; margin: 0 auto;">
-    <div style="display: inline-block; padding: 0.5rem 1.25rem; background: rgba(0, 168, 232, 0.1); border: 1px solid var(--color-primary); border-radius: 20px; color: var(--color-primary); font-size: 0.85rem; font-weight: 700; margin-bottom: 1.5rem;">
-      {t['hero.badge']}
-    </div>
-    <h1 style="font-size: 3rem; line-height: 1.2; color: var(--color-dark); margin-bottom: 1.5rem; font-weight: 800; letter-spacing: -0.02em;">
-      {t['hero.title']}
-    </h1>
-    <p style="font-size: 1.2rem; color: #475569; margin-bottom: 2.5rem; line-height: 1.6;">
-      {t['hero.subtitle']}
-    </p>
-    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-      <a href="mailto:info@idmerx.com" class="btn-primary">{t['hero.cta']}</a>
-      <a href="#casos" class="btn-secondary">{t['hero.cta_secondary']}</a>
-    </div>
-  </section>
+    'sectors.title': 'Soluzioni di Settore',
+    'sectors.subtitle': 'Tecnologia NFC progettata per le esigenze di ogni settore.',
 
-  <!-- Product Use Cases Section -->
-  <section id="casos" style="margin-top: 2rem;">
-    <div style="text-align: center; margin-bottom: 3rem;">
-      <h2 style="font-size: 2.2rem; color: var(--color-dark); font-weight: 800; margin-bottom: 0.5rem;">{t['sectors.title']}</h2>
-      <p style="color: #64748B; font-size: 1.1rem;">{t['sectors.subtitle']}</p>
-    </div>
+    'sector.jersey.title': 'Maglie Sportive & Merchandising',
+    'sector.jersey.badge': 'Moda & Sport',
+    'sector.jersey.desc': 'Chip NFC lavabile integrato nel tessuto. Consente ai tifosi di verificare l\'autenticità del capo ufficiale e accedere a contenuti esclusivi.',
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
-      {cases.map((c) => (
-        <div style="background: #FFFFFF; border-radius: 16px; border: 1px solid var(--color-border); overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
-          <div style={`height: 220px; background: ${c.fallbackBg}; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;`}>
-            <img 
-              src={c.image} 
-              alt={t[`sector.${c.key}.title`]} 
-              style="width: 100%; height: 100%; object-fit: cover;"
-              onerror="this.style.display='none'"
-            />
-            <div style="position: absolute; top: 1rem; left: 1rem; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); color: #FFF; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700;">
-              {c.icon} {t[`sector.${c.key}.badge`]}
-            </div>
-          </div>
-          
-          <div style="padding: 1.8rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
-            <div>
-              <h3 style="font-size: 1.25rem; color: var(--color-dark); font-weight: 700; margin-bottom: 0.8rem;">
-                {t[`sector.${c.key}.title`]}
-              </h3>
-              <p style="color: #64748B; font-size: 0.95rem; line-height: 1.5;">
-                {t[`sector.${c.key}.desc`]}
-              </p>
-            </div>
-            <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #F1F5F9; text-align: right;">
-              <a href="mailto:info@idmerx.com" style="color: var(--color-primary); font-weight: 700; text-decoration: none; font-size: 0.9rem;">
-                Saber más &rarr;
-              </a>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  </section>
-</Layout>
+    'sector.valve.title': 'Valvole & Componenti Industriali',
+    'sector.valve.badge': 'Industria & Manutenzione',
+    'sector.valve.desc': 'NFC ad alta resistenza tecnica. Registro inalterabile di ispezioni, manuali di manutenzione, schede tecniche e certificati di sicurezza.',
 
+    'sector.spirits.title': 'Vini & Distillati di Pregio',
+    'sector.spirits.badge': 'Food & Beverage',
+    'sector.spirits.desc': 'Sigillo di origine digitale e protezione anti-contraffazione. Garantisce l\'annata, la tracciabilità della bottiglia e degustazioni interattive.',
+
+    'sector.luxury.title': 'Moda, Arte & Beni di Lusso',
+    'sector.luxury.badge': 'Lusso & Collezionismo',
+    'sector.luxury.desc': 'Passaporto Digitale del Prodotto (DPP). Certificati digitali di autenticità e proprietà legati fisicamente a pezzi esclusivi in edizione limitata.',
+
+    'footer.rights': 'Tutti i diritti riservati.',
+  },
+};
